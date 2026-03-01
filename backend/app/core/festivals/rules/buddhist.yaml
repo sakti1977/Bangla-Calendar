@@ -1,0 +1,43 @@
+# Buddhist festival rules
+
+- id: buddha_purnima
+  name_bn: বুদ্ধ পূর্ণিমা
+  name_en: Buddha Purnima (Vesak)
+  tradition: buddhist
+  regions: [BD, WB]
+  is_public_holiday: true
+  rule:
+    type: tithi_based
+    tithi: 15   # Purnima
+    paksha: shukla
+    lunar_month: 2   # Vaishakha (Amanta; corresponds to Boishakh/Jyoishtho lunar month)
+    critical_window: full_day
+    tie_break: prevailing_at_sunrise
+
+- id: madhupurnima
+  name_bn: মধুপূর্ণিমা
+  name_en: Madhu Purnima (Honey Full Moon)
+  tradition: buddhist
+  regions: [BD, WB]
+  is_public_holiday: false
+  rule:
+    type: tithi_based
+    tithi: 15   # Purnima
+    paksha: shukla
+    lunar_month: 6   # Bhadra (Amanta)
+    critical_window: full_day
+    tie_break: prevailing_at_sunrise
+
+- id: ashvina_purnima
+  name_bn: আশ্বিনী পূর্ণিমা
+  name_en: Ashvina Purnima (Probarana Purnima)
+  tradition: buddhist
+  regions: [BD, WB]
+  is_public_holiday: false
+  rule:
+    type: tithi_based
+    tithi: 15
+    paksha: shukla
+    lunar_month: 7   # Ashwin (Amanta)
+    critical_window: full_day
+    tie_break: prevailing_at_sunrise

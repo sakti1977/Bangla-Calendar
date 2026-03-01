@@ -1,0 +1,85 @@
+# Muslim festival rules
+# Bangladesh uses moon-sighting (Islamic Foundation Bangladesh declarations)
+# Computed Hijri dates are used as baseline; sighting override applies
+
+- id: eid_ul_fitr
+  name_bn: ঈদুল ফিতর
+  name_en: Eid ul-Fitr
+  tradition: muslim
+  regions: [BD, WB]
+  is_public_holiday: true
+  rule:
+    type: hijri_sighting
+    hijri_month: 10   # Shawwal
+    hijri_day: 1
+    note_bn: চাঁদ দেখা সাপেক্ষে তারিখ পরিবর্তন হতে পারে
+
+- id: eid_ul_adha
+  name_bn: ঈদুল আজহা
+  name_en: Eid ul-Adha
+  tradition: muslim
+  regions: [BD, WB]
+  is_public_holiday: true
+  rule:
+    type: hijri_sighting
+    hijri_month: 12   # Dhu al-Hijjah
+    hijri_day: 10
+    note_bn: চাঁদ দেখা সাপেক্ষে তারিখ পরিবর্তন হতে পারে
+
+- id: shab_e_barat
+  name_bn: শবে বরাত
+  name_en: Shab-e-Barat (Lailat al-Bara'at)
+  tradition: muslim
+  regions: [BD, WB]
+  is_public_holiday: true
+  rule:
+    type: hijri_sighting
+    hijri_month: 8    # Sha'ban
+    hijri_day: 15
+    note_bn: শাবান মাসের ১৫ তারিখ
+
+- id: shab_e_qadr
+  name_bn: শবে কদর
+  name_en: Shab-e-Qadr (Laylat al-Qadr)
+  tradition: muslim
+  regions: [BD, WB]
+  is_public_holiday: true
+  rule:
+    type: hijri_sighting
+    hijri_month: 9    # Ramadan
+    hijri_day: 27
+    note_bn: রমজান মাসের ২৭ তারিখ (সাধারণত)
+
+- id: eid_e_milad_un_nabi
+  name_bn: ঈদে মিলাদুন্নবী (সা.)
+  name_en: Eid-e-Milad un-Nabi
+  tradition: muslim
+  regions: [BD, WB]
+  is_public_holiday: true
+  rule:
+    type: hijri_sighting
+    hijri_month: 3    # Rabi al-Awwal
+    hijri_day: 12
+
+- id: ashura
+  name_bn: পবিত্র আশুরা
+  name_en: Ashura
+  tradition: muslim
+  regions: [BD, WB]
+  is_public_holiday: true
+  rule:
+    type: hijri_sighting
+    hijri_month: 1    # Muharram
+    hijri_day: 10
+
+- id: ramadan_start
+  name_bn: রমজান শুরু
+  name_en: Ramadan (start)
+  tradition: muslim
+  regions: [BD, WB]
+  is_public_holiday: false
+  rule:
+    type: hijri_sighting
+    hijri_month: 9
+    hijri_day: 1
+    note_bn: চাঁদ দেখা সাপেক্ষে

@@ -1,0 +1,199 @@
+# Hindu festival rules — tithi-based observances
+# lunar_month uses the Amanta (new-moon-to-new-moon) convention month numbering
+# where month 1 = Chaitra, month 7 = Ashwin (autumn), month 8 = Kartik
+
+- id: durga_puja_shashti
+  name_bn: মহাষষ্ঠী
+  name_en: Maha Shashti (Durga Puja)
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: true
+  rule:
+    type: tithi_based
+    tithi: 6
+    paksha: shukla
+    lunar_month: 7   # Ashwin (Amanta)
+    critical_window: pradosh
+    tie_break: next_day_if_spans_two
+
+- id: durga_puja_saptami
+  name_bn: মহাসপ্তমী
+  name_en: Maha Saptami (Durga Puja)
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: true
+  rule:
+    type: tithi_based
+    tithi: 7
+    paksha: shukla
+    lunar_month: 7
+    critical_window: sunrise
+    tie_break: prevailing_at_sunrise
+
+- id: durga_puja_ashtami
+  name_bn: মহাঅষ্টমী
+  name_en: Maha Ashtami (Durga Puja)
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: true
+  rule:
+    type: tithi_based
+    tithi: 8
+    paksha: shukla
+    lunar_month: 7
+    critical_window: sunrise
+    tie_break: prevailing_at_sunrise
+
+- id: durga_puja_navami
+  name_bn: মহানবমী
+  name_en: Maha Navami (Durga Puja)
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: true
+  rule:
+    type: tithi_based
+    tithi: 9
+    paksha: shukla
+    lunar_month: 7
+    critical_window: sunrise
+    tie_break: prevailing_at_sunrise
+
+- id: durga_puja_dashami
+  name_bn: বিজয়া দশমী
+  name_en: Vijaya Dashami (Durga Puja)
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: true
+  rule:
+    type: tithi_based
+    tithi: 10
+    paksha: shukla
+    lunar_month: 7
+    critical_window: sunrise
+    tie_break: prevailing_at_sunrise
+
+- id: kali_puja
+  name_bn: কালীপূজা
+  name_en: Kali Puja
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: false
+  rule:
+    type: tithi_based
+    tithi: 14
+    paksha: krishna
+    lunar_month: 8   # Kartik (Amanta)
+    critical_window: midnight
+    tie_break: midnight_prevailing
+
+- id: diwali_bd
+  name_bn: দীপাবলি
+  name_en: Diwali / Deepavali
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: false
+  rule:
+    type: tithi_based
+    tithi: 15    # Amavasya (tithi 30 = index 29; but Amavasya is counted as 15 Krishna)
+    paksha: krishna
+    lunar_month: 8
+    critical_window: midnight
+    tie_break: midnight_prevailing
+
+- id: saraswati_puja
+  name_bn: সরস্বতী পূজা
+  name_en: Saraswati Puja
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: false
+  rule:
+    type: tithi_based
+    tithi: 5
+    paksha: shukla
+    lunar_month: 11   # Magh (Amanta)
+    critical_window: sunrise
+    tie_break: prevailing_at_sunrise
+
+- id: janmashtami
+  name_bn: জন্মাষ্টমী
+  name_en: Janmashtami
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: true
+  rule:
+    type: tithi_based
+    tithi: 8
+    paksha: krishna
+    lunar_month: 5   # Shravan (Amanta)
+    critical_window: midnight
+    tie_break: midnight_prevailing
+
+- id: rathayatra
+  name_bn: রথযাত্রা
+  name_en: Rath Yatra
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: false
+  rule:
+    type: tithi_based
+    tithi: 2
+    paksha: shukla
+    lunar_month: 4   # Ashadh (Amanta)
+    critical_window: sunrise
+    tie_break: prevailing_at_sunrise
+
+- id: lakshmi_puja
+  name_bn: কোজাগরী লক্ষ্মীপূজা
+  name_en: Kojagari Lakshmi Puja
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: false
+  rule:
+    type: tithi_based
+    tithi: 15    # Purnima
+    paksha: shukla
+    lunar_month: 7   # Ashwin
+    critical_window: full_day
+    tie_break: prevailing_at_sunrise
+
+- id: dol_jatra
+  name_bn: দোল যাত্রা
+  name_en: Dol Yatra / Holi
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: false
+  rule:
+    type: tithi_based
+    tithi: 15   # Purnima
+    paksha: shukla
+    lunar_month: 12  # Falgun (Amanta)
+    critical_window: full_day
+    tie_break: prevailing_at_sunrise
+
+- id: shivaratri
+  name_bn: শিবরাত্রি
+  name_en: Maha Shivaratri
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: false
+  rule:
+    type: tithi_based
+    tithi: 14
+    paksha: krishna
+    lunar_month: 11  # Magh (Amanta)
+    critical_window: midnight
+    tie_break: midnight_prevailing
+
+- id: navaratri_start
+  name_bn: নবরাত্রি (শারদীয়)
+  name_en: Sharadiya Navaratri (start)
+  tradition: hindu
+  regions: [WB, BD]
+  is_public_holiday: false
+  rule:
+    type: tithi_based
+    tithi: 1
+    paksha: shukla
+    lunar_month: 7   # Ashwin
+    critical_window: sunrise
+    tie_break: prevailing_at_sunrise

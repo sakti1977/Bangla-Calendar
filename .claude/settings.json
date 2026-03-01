@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/saktibagchi/.docker/**)",
+      "Bash(export PATH=\"/Applications/Docker.app/Contents/Resources/bin:$PATH\")",
+      "Bash(docker compose up --build)",
+      "Bash(docker system df)",
+      "Bash(lsof -ti :5173 -ti :8000)",
+      "Bash(xargs kill -9)",
+      "Bash(docker compose up)",
+      "Bash(docker compose up -d)",
+      "Bash(docker ps --format \"table {{.Names}}\\\\t{{.Status}}\\\\t{{.Ports}}\")"
+    ]
+  }
+}

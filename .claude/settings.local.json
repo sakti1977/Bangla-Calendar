@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \":*)",
+      "Bash(npm install)",
+      "Bash(npm install @tanstack/react-query zustand date-fns)",
+      "Bash(npm install -D tailwindcss @tailwindcss/vite)",
+      "Bash(sudo chown -R 502:20 \"/Users/saktibagchi/.npm\")",
+      "Bash(npm install --cache /tmp/npm-cache)",
+      "Bash(npm install --cache /tmp/npm-cache @tanstack/react-query zustand date-fns)",
+      "Bash(npm install --cache /tmp/npm-cache -D tailwindcss @tailwindcss/vite)",
+      "Bash(pip install -e \".\" --quiet)",
+      "Bash(pip install fastapi pydantic pydantic-settings PyYAML pytest hypothesis --quiet)",
+      "Bash(PYTHONPATH=. python -m pytest tests/unit/test_bd_calendar.py tests/unit/test_hijri.py tests/unit/test_numerals.py -v)",
+      "Bash(PYTHONPATH=. python -m pytest tests/integration/test_api_endpoints.py -v)",
+      "Bash(PYTHONPATH=. python -m pytest -v)",
+      "Bash(export PATH=\"/usr/local/bin:$PATH\")",
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(pip3 install -e \".[dev]\")",
+      "Bash(pip3 install fastapi \"uvicorn[standard]\" pydantic \"pydantic-settings\" sqlalchemy asyncpg alembic \"redis[asyncio]\" httpx PyYAML pyswisseph skyfield)",
+      "Bash(/opt/homebrew/bin/psql --version)",
+      "Bash(pg_isready)",
+      "Bash(/opt/homebrew/bin/redis-cli ping)"
+    ]
+  }
+}

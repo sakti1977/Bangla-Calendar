@@ -1,0 +1,32 @@
+# Christian festival rules (fixed Gregorian dates)
+
+- id: christmas
+  name_bn: বড়দিন (ক্রিসমাস)
+  name_en: Christmas Day
+  tradition: christian
+  regions: [BD, WB]
+  is_public_holiday: true
+  rule:
+    type: fixed_gregorian
+    greg_month: 12
+    greg_day: 25
+
+- id: good_friday
+  name_bn: গুড ফ্রাইডে
+  name_en: Good Friday
+  tradition: christian
+  regions: [BD, WB]
+  is_public_holiday: true
+  rule:
+    type: easter_based
+    offset_days: -2    # 2 days before Easter Sunday
+
+- id: easter_sunday
+  name_bn: ইস্টার সানডে
+  name_en: Easter Sunday
+  tradition: christian
+  regions: [BD, WB]
+  is_public_holiday: false
+  rule:
+    type: easter_based
+    offset_days: 0

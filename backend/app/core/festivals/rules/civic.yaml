@@ -1,0 +1,78 @@
+# Civic and national holidays for Bangladesh (BD) and West Bengal (WB)
+
+- id: pahela_baishakh_bd
+  name_bn: পহেলা বৈশাখ
+  name_en: Pohela Boishakh
+  tradition: civic
+  regions: [BD]
+  is_public_holiday: true
+  rule:
+    type: fixed_bangla_bd
+    bangla_month: 1
+    bangla_day: 1
+
+- id: pohela_boishakh_wb
+  name_bn: পয়লা বৈশাখ
+  name_en: Poila Boisakh
+  tradition: civic
+  regions: [WB]
+  is_public_holiday: true
+  rule:
+    type: fixed_bangla_wb
+    bangla_month: 1
+    bangla_day: 1
+
+- id: independence_day_bd
+  name_bn: স্বাধীনতা দিবস
+  name_en: Independence Day (Bangladesh)
+  tradition: civic
+  regions: [BD]
+  is_public_holiday: true
+  rule:
+    type: fixed_gregorian
+    greg_month: 3
+    greg_day: 26
+
+- id: martyrs_day_bd
+  name_bn: শহীদ দিবস
+  name_en: Language Martyrs Day (Ekushey February)
+  tradition: civic
+  regions: [BD]
+  is_public_holiday: true
+  rule:
+    type: fixed_gregorian
+    greg_month: 2
+    greg_day: 21
+
+- id: victory_day_bd
+  name_bn: বিজয় দিবস
+  name_en: Victory Day (Bangladesh)
+  tradition: civic
+  regions: [BD]
+  is_public_holiday: true
+  rule:
+    type: fixed_gregorian
+    greg_month: 12
+    greg_day: 16
+
+- id: national_mourning_day_bd
+  name_bn: জাতীয় শোক দিবস
+  name_en: National Mourning Day
+  tradition: civic
+  regions: [BD]
+  is_public_holiday: true
+  rule:
+    type: fixed_gregorian
+    greg_month: 8
+    greg_day: 15
+
+- id: may_day
+  name_bn: মে দিবস
+  name_en: International Labour Day
+  tradition: civic
+  regions: [BD, WB]
+  is_public_holiday: true
+  rule:
+    type: fixed_gregorian
+    greg_month: 5
+    greg_day: 1
