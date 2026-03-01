@@ -1,0 +1,7 @@
+# Applied automatically by Docker Compose on top of docker-compose.yml.
+# Relaxes CORS for local dev and GitHub Codespaces (where the frontend
+# URL is a dynamic *.app.github.dev address).
+services:
+  backend:
+    environment:
+      CORS_ORIGINS: "*"
