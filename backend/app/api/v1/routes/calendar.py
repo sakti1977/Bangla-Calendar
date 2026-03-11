@@ -17,9 +17,9 @@ from app.core.cache.redis_cache import (
 
 from app.api.v1.schemas.calendar import (
     DateInfoResponse, MonthResponse, MonthDaySchema,
-    BanglaDateSchema, PanchangaSchema, FestivalSchema,
+    BanglaDateSchema, HijriDateSchema, PanchangaSchema, FestivalSchema,
 )
-from app.core.interfaces import BanglaDate, PanchangaResult, FestivalEntry
+from app.core.interfaces import BanglaDate, HijriDate, PanchangaResult, FestivalEntry
 
 router = APIRouter(prefix="/calendar", tags=["calendar"])
 
@@ -54,6 +54,24 @@ def _festival_to_schema(f: FestivalEntry) -> FestivalSchema:
         id=f.id, name_bn=f.name_bn, name_en=f.name_en,
         tradition=f.tradition, is_public_holiday=f.is_public_holiday,
     )
+
+
+def _hijri_to_schema(h: HijriDate) -> HijriDateSchema:
+    return HijriDateSchema(
+        year=h.year, month=h.month, day=h.day,
+        month_name_bn=h.month_name_bn, month_name_en=h.month_name_en,
+        year_bn=h.year_bn, day_bn=h.day_bn, era_bn=h.era_bn,
+        is_sighting_confirmed=h.is_sighting_confirmed, note_bn=h.note_bn,
+    )
+
+
+def _get_bd_engine():
+    """Lazily return BD engine."""
+    try:
+        from app.core.calendars.registry import get_engine
+        return get_engine("BD")
+    except (ValueError, Exception):
+        return None
 
 
 def _get_wb_engine():
@@ -110,6 +128,16 @@ def get_date_info(
         if cached is not None:
             return DateInfoResponse.model_validate(cached)
 
+    # BD date (always computed — BD engine is always available)
+    bd_schema = None
+    bd_engine = _get_bd_engine()
+    if bd_engine:
+        try:
+            bd_date = bd_engine.greg_to_bangla(d)
+            bd_schema = _bd_to_schema(bd_date)
+        except Exception:
+            pass
+
     # WB date (if engine registered)
     wb_schema = None
     wb_engine = _get_wb_engine()
@@ -119,6 +147,14 @@ def get_date_info(
             wb_schema = _bd_to_schema(wb_date)
         except Exception:
             pass
+
+    # Hijri date (always computed — tabular algorithm requires no external services)
+    hijri_schema = None
+    try:
+        from app.core.calendars.hijri import greg_to_hijri
+        hijri_schema = _hijri_to_schema(greg_to_hijri(d))
+    except Exception:
+        pass
 
     # Panchanga (optional)
     panchanga_schema = None
@@ -144,7 +180,9 @@ def get_date_info(
 
     response = DateInfoResponse(
         gregorian=d,
+        bd=bd_schema,
         wb=wb_schema,
+        hijri=hijri_schema,
         panchanga=panchanga_schema,
         festivals=festivals,
     )
@@ -185,9 +223,15 @@ def get_month(
     num_days = (next_month_start - month_start).days
 
     wb_engine = _get_wb_engine()
+    bd_engine = _get_bd_engine()
     resolver = _get_festival_resolver()
     p_engine = _get_panchanga_engine() if lat is not None and lon is not None else None
     utc_offset = 5.5 if region.upper() == "WB" else 6.0
+
+    try:
+        from app.core.calendars.hijri import greg_to_hijri as _greg_to_hijri
+    except Exception:
+        _greg_to_hijri = None  # type: ignore[assignment]
 
     # Pre-compute all festivals for this year to avoid repeated resolution
     festival_map: dict[date, list[FestivalSchema]] = {}
@@ -203,6 +247,14 @@ def get_month(
     for day_num in range(num_days):
         d = month_start + timedelta(days=day_num)
 
+        bd_schema = None
+        if bd_engine:
+            try:
+                bd_date = bd_engine.greg_to_bangla(d)
+                bd_schema = _bd_to_schema(bd_date)
+            except Exception:
+                pass
+
         wb_schema = None
         if wb_engine:
             try:
@@ -212,6 +264,13 @@ def get_month(
                 pass
 
         festivals = festival_map.get(d, [])
+
+        hijri_schema = None
+        if _greg_to_hijri is not None:
+            try:
+                hijri_schema = _hijri_to_schema(_greg_to_hijri(d))
+            except Exception:
+                pass
 
         panchanga_schema = None
         if p_engine and lat is not None and lon is not None:
@@ -223,7 +282,9 @@ def get_month(
 
         days.append(MonthDaySchema(
             gregorian=d,
+            bd=bd_schema,
             wb=wb_schema,
+            hijri=hijri_schema,
             panchanga=panchanga_schema,
             festivals=festivals,
         ))

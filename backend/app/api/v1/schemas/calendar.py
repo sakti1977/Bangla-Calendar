@@ -23,6 +23,21 @@ class BanglaDateSchema(BaseModel):
     model_config = {"from_attributes": True}
 
 
+class HijriDateSchema(BaseModel):
+    year: int
+    month: int
+    day: int
+    month_name_bn: str
+    month_name_en: str
+    year_bn: str = Field(description="Year in Bengali numerals")
+    day_bn: str = Field(description="Day in Bengali numerals")
+    era_bn: str
+    is_sighting_confirmed: bool = False
+    note_bn: Optional[str] = None
+
+    model_config = {"from_attributes": True}
+
+
 
 class PanchangaSchema(BaseModel):
     tithi_number: int
@@ -63,14 +78,19 @@ class FestivalSchema(BaseModel):
 
 class DateInfoResponse(BaseModel):
     gregorian: date
+    bd: Optional[BanglaDateSchema] = None
     wb: Optional[BanglaDateSchema] = None
+    hijri: Optional[HijriDateSchema] = None
     panchanga: Optional[PanchangaSchema] = None
     festivals: list[FestivalSchema] = []
 
 
 class MonthDaySchema(BaseModel):
     gregorian: date
+    bd: Optional[BanglaDateSchema] = None
     wb: Optional[BanglaDateSchema] = None
+    hijri: Optional[HijriDateSchema] = None
+    panchanga: Optional[PanchangaSchema] = None
     festivals: list[FestivalSchema] = []
 
 
