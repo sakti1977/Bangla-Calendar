@@ -2,14 +2,14 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { api } from '../client'
 import type { MonthData, Region } from '../types'
 
-export function useMonthData(year: number, month: number, region: Region) {
+export function useMonthData(year: number, month: number, region: Region, lat?: number, lon?: number) {
   const queryClient = useQueryClient()
 
   // Prefetch adjacent months on mount
   const prefetch = (y: number, m: number) => {
     queryClient.prefetchQuery({
-      queryKey: ['month', region, y, m],
-      queryFn: () => api.getMonth(y, m, region),
+      queryKey: ['month', region, y, m, lat, lon],
+      queryFn: () => api.getMonth(y, m, region, lat, lon),
       staleTime: 7 * 24 * 60 * 60 * 1000,
     })
   }
@@ -24,8 +24,8 @@ export function useMonthData(year: number, month: number, region: Region) {
   prefetch(nextY, nextM)
 
   return useQuery<MonthData>({
-    queryKey: ['month', region, year, month],
-    queryFn: () => api.getMonth(year, month, region),
+    queryKey: ['month', region, year, month, lat, lon],
+    queryFn: () => api.getMonth(year, month, region, lat, lon),
     staleTime: 7 * 24 * 60 * 60 * 1000,
     gcTime: 30 * 24 * 60 * 60 * 1000,
     placeholderData: (prev) => prev,

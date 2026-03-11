@@ -13,7 +13,7 @@ export function DayCell({ dayData, isCurrentMonth = true }: Props) {
   const today = new Date().toISOString().split('T')[0]
   const isToday = dayData.gregorian === today
 
-  const bd = dayData.bd
+  const wb = dayData.wb
   const gregorianDay = parseInt(dayData.gregorian.split('-')[2])
 
   const visibleFestivals = dayData.festivals.filter((f) =>
@@ -31,25 +31,32 @@ export function DayCell({ dayData, isCurrentMonth = true }: Props) {
         isSelected ? 'border-blue-500 bg-blue-50 ring-2 ring-blue-300' : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50',
         isToday && !isSelected ? 'border-orange-400 bg-orange-50' : '',
       ].join(' ')}
-      aria-label={`${dayData.gregorian}${bd ? `, ${bd.day_bn} ${bd.month_name_bn} ${bd.year_bn} বঙ্গাব্দ` : ''}`}
+      aria-label={`${dayData.gregorian}${wb ? `, ${wb.day_bn} ${wb.month_name_bn} ${wb.year_bn} বঙ্গাব্দ` : ''}`}
       aria-pressed={isSelected}
     >
       {/* Primary: Bangla day number */}
       <div className={`text-xl font-bold leading-none bangla-font ${isToday ? 'text-orange-600' : isSelected ? 'text-blue-700' : 'text-gray-800'}`} lang="bn">
-        {bd ? bd.day_bn : ''}
+        {wb ? wb.day_bn : ''}
       </div>
 
       {/* Secondary: Gregorian day */}
-      <div className="text-xs text-gray-400 leading-none mt-0.5">
+      <div className="text-[10px] text-gray-500 leading-none mt-1">
         {gregorianDay}
       </div>
 
-      {/* Hijri day */}
-      {dayData.hijri && (
-        <div className="text-xs text-gray-400 leading-none" lang="bn">
-          {dayData.hijri.day_bn}
-        </div>
-      )}
+      {/* Hindu Panchanga (Tithi & Sankranti) */}
+      <div className="flex flex-col gap-0.5 mt-0.5 overflow-hidden">
+        {dayData.panchanga && (
+          <div className="text-[10px] text-indigo-600 truncate bangla-font" lang="bn" title={dayData.panchanga.tithi_name_bn}>
+            {dayData.panchanga.tithi_name_bn}
+          </div>
+        )}
+        {wb?.is_sankranti && wb.sankranti_time_ist && (
+          <div className="text-[9px] text-red-600 bg-red-50 px-0.5 py-px rounded shrink-0 w-fit bangla-font" lang="bn">
+            সংক্রান্তি: {wb.sankranti_time_ist}
+          </div>
+        )}
+      </div>
 
       {/* Festival dots */}
       {visibleFestivals.length > 0 && (

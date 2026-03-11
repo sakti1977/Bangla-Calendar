@@ -1,11 +1,13 @@
 import { useCalendarStore } from '../../store/calendarStore'
 import { useMonthData } from '../../api/hooks/useMonthData'
+import { useLocationStore } from '../../store/locationStore'
 import { MonthNavigator } from './MonthNavigator'
 import { CalendarGrid } from './CalendarGrid'
 
 export function MonthView() {
   const { viewYear, viewMonth, region } = useCalendarStore()
-  const { data, isLoading, isError } = useMonthData(viewYear, viewMonth, region)
+  const { lat, lon } = useLocationStore()
+  const { data, isLoading, isError } = useMonthData(viewYear, viewMonth, region, lat, lon)
 
   return (
     <div className="flex-1 p-4">

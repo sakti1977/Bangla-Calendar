@@ -2,7 +2,7 @@ import { useCalendarStore } from '../../store/calendarStore'
 import { TRADITION_COLORS } from '../../utils/festivalColors'
 import type { Tradition } from '../../api/types'
 
-const ALL_TRADITIONS: Tradition[] = ['hindu', 'muslim', 'buddhist', 'christian', 'civic']
+const ALL_TRADITIONS: Tradition[] = ['hindu']
 
 export function TraditionFilter() {
   const { activeTraditions, toggleTradition } = useCalendarStore()

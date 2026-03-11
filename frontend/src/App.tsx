@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { MonthView } from './components/calendar/MonthView'
 import { DayDetailPanel } from './components/dayDetail/DayDetailPanel'
-import { RegionToggle } from './components/controls/RegionToggle'
 import { TraditionFilter } from './components/controls/TraditionFilter'
 import { LocationInput } from './components/controls/LocationInput'
 import './index.css'
@@ -28,7 +27,6 @@ function AppLayout() {
         </div>
         <div className="flex items-center gap-3 ml-auto flex-wrap">
           <LocationInput />
-          <RegionToggle />
           <TraditionFilter />
         </div>
       </header>

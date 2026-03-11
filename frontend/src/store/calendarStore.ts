@@ -22,8 +22,8 @@ export const useCalendarStore = create<CalendarState>((set) => ({
   viewYear: today.getFullYear(),
   viewMonth: today.getMonth() + 1,
   selectedDate: null,
-  region: 'BD',
-  activeTraditions: ['hindu', 'muslim', 'buddhist', 'christian', 'civic'],
+  region: 'WB',
+  activeTraditions: ['hindu'],
 
   setView: (year, month) => set({ viewYear: year, viewMonth: month }),
 

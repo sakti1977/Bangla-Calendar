@@ -33,26 +33,14 @@ export function DayDetailPanel() {
 
       {data && (
         <div className="p-4 space-y-4">
-          {/* Bangla Date (primary) */}
-          {data.bd && (
+          {/* Hindu Date (primary) */}
+          {data.wb && (
             <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
               <div className="text-2xl font-bold text-orange-700 bangla-font" lang="bn">
-                {data.bd.day_bn} {data.bd.month_name_bn}
-              </div>
-              <div className="text-sm text-orange-600 bangla-font" lang="bn">
-                {data.bd.year_bn} {data.bd.era_bn} ({data.bd.region === 'BD' ? 'বাংলাদেশ' : 'পশ্চিমবঙ্গ'})
-              </div>
-            </div>
-          )}
-
-          {/* WB date if different region */}
-          {data.wb && region === 'WB' && (
-            <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
-              <div className="text-lg font-semibold text-blue-700 bangla-font" lang="bn">
                 {data.wb.day_bn} {data.wb.month_name_bn}
               </div>
-              <div className="text-sm text-blue-600 bangla-font" lang="bn">
-                {data.wb.year_bn} {data.wb.era_bn} (পশ্চিমবঙ্গ)
+              <div className="text-sm text-orange-600 bangla-font" lang="bn">
+                {data.wb.year_bn} {data.wb.era_bn}
               </div>
             </div>
           )}
@@ -63,20 +51,6 @@ export function DayDetailPanel() {
               weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
             })}
           </div>
-
-          {/* Hijri date */}
-          {data.hijri && (
-            <div className="border border-green-200 rounded-lg p-3 bg-green-50">
-              <div className="text-sm font-medium text-green-700 bangla-font" lang="bn">
-                {data.hijri.day_bn} {data.hijri.month_name_bn} {data.hijri.year_bn} {data.hijri.era_bn}
-              </div>
-              {data.hijri.note_bn && (
-                <div className="text-xs text-green-600 mt-1 bangla-font" lang="bn">
-                  {data.hijri.note_bn}
-                </div>
-              )}
-            </div>
-          )}
 
           {/* Panchanga */}
           {data.panchanga && (

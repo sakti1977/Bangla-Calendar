@@ -26,8 +26,12 @@ export const api = {
     include_panchanga?: boolean
   }) => apiFetch<import('./types').DateInfo>('/calendar/date-info', params as Record<string, string | number | boolean>),
 
-  getMonth: (year: number, month: number, region: string) =>
-    apiFetch<import('./types').MonthData>('/calendar/month', { year, month, region }),
+  getMonth: (year: number, month: number, region: string, lat?: number, lon?: number) => {
+    const params: Record<string, string | number | boolean> = { year, month, region }
+    if (lat !== undefined) params.lat = lat
+    if (lon !== undefined) params.lon = lon
+    return apiFetch<import('./types').MonthData>('/calendar/month', params)
+  },
 
   getPanchanga: (date: string, lat: number, lon: number, region: string) =>
     apiFetch<import('./types').Panchanga>('/panchanga', { date, lat, lon, region }),

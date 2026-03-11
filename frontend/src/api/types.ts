@@ -14,19 +14,6 @@ export interface BanglaDate {
   sankranti_time_ist: string | null
 }
 
-export interface HijriDate {
-  year: number
-  month: number
-  day: number
-  month_name_bn: string
-  month_name_en: string
-  year_bn: string
-  day_bn: string
-  era_bn: string
-  is_sighting_confirmed: boolean
-  note_bn: string | null
-}
-
 export interface Panchanga {
   tithi_number: number
   tithi_name_bn: string
@@ -55,25 +42,22 @@ export interface Festival {
   id: string
   name_bn: string
   name_en: string
-  tradition: 'hindu' | 'muslim' | 'buddhist' | 'christian' | 'civic'
+  tradition: 'hindu'
   is_public_holiday: boolean
   note_bn: string | null
 }
 
 export interface DateInfo {
   gregorian: string
-  bd: BanglaDate | null
   wb: BanglaDate | null
-  hijri: HijriDate | null
   panchanga: Panchanga | null
   festivals: Festival[]
 }
 
 export interface MonthDay {
   gregorian: string
-  bd: BanglaDate | null
   wb: BanglaDate | null
-  hijri: HijriDate | null
+  panchanga: Panchanga | null
   festivals: Festival[]
 }
 
@@ -85,4 +69,4 @@ export interface MonthData {
 }
 
 export type Region = 'BD' | 'WB'
-export type Tradition = 'hindu' | 'muslim' | 'buddhist' | 'christian' | 'civic'
+export type Tradition = 'hindu'
